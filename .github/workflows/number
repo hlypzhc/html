@@ -1,0 +1,55 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>计数器</title>  
+    <style>  
+        #counter {  
+            font-size: 24px;  
+            margin-bottom: 10px;  
+        }  
+        #records {  
+            font-size: 16px;  
+            color: gray;  
+            margin-bottom: 10px;  
+        }  
+        #records > div {  
+            margin-bottom: 5px;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div id="counter">次数: 0</div>  
+    <div id="records"></div>  
+    <button id="recordBtn">记录</button>  
+    <button id="resetBtn">重置</button>  
+  
+    <script>  
+        let count = 0;  
+        const counterElement = document.getElementById('counter');  
+        const recordsElement = document.getElementById('records');  
+        const recordBtn = document.getElementById('recordBtn');  
+        const resetBtn = document.getElementById('resetBtn');  
+  
+        recordBtn.addEventListener('click', function() {  
+            count++;  
+            const timestamp = new Date().toLocaleString();  
+            const record = `第${count}次：${timestamp}`;  
+            const recordDiv = document.createElement('div');  
+            recordDiv.textContent = record;  
+            recordsElement.appendChild(recordDiv);  
+            counterElement.textContent = `次数: ${count}`;  
+        });  
+  
+        resetBtn.addEventListener('click', function() {  
+            count = 0;  
+            counterElement.textContent = `次数: ${count}`;  
+            // 清空记录  
+            while (recordsElement.firstChild) {  
+                recordsElement.removeChild(recordsElement.firstChild);  
+            }  
+        });  
+    </script>  
+</body>  
+</html>
